@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.example.clientessqlite.ConfiguracionDB.Constantes;
 import com.example.clientessqlite.DataBase.AppDatabase;
-import com.example.clientessqlite.UI.MenuParalelo;
 
 public class MainActivity extends AppCompatActivity {
     private AppDatabase db;
@@ -22,14 +21,7 @@ public class MainActivity extends AppCompatActivity {
         db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, Constantes.BD_NAME).allowMainThreadQueries().build();
         String inf= String.valueOf(db.clienteDao().getAllClientes());
         Toast.makeText(MainActivity.this,"Info: "+inf,Toast.LENGTH_LONG).show();
-        btn =(Button) findViewById(R.id.btn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, MenuParalelo.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
 }
