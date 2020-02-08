@@ -90,7 +90,7 @@
         app:layout_constraintVertical_bias="0.049" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/txtLat"
         android:layout_width="135dp"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -106,7 +106,7 @@
         app:layout_constraintVertical_bias="0.10" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/txtLong"
         android:layout_width="135dp"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -122,7 +122,7 @@
         app:layout_constraintVertical_bias="0.10" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnGps"
         android:layout_width="81dp"
         android:layout_height="64dp"
         android:background="@android:drawable/ic_menu_mapmode"
@@ -134,7 +134,7 @@
         app:layout_constraintVertical_bias="0.02" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/txtDir"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"

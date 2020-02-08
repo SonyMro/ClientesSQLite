@@ -30,7 +30,6 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private AppDatabase db;
-    private Button btn;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     //CircleImageView civ = (CircleImageView) findViewById(R.id.imagen_circular);
@@ -47,10 +46,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
                 Intent intent =null;
                 switch (menuItem.getItemId()) {
-
                     case R.id.menu_VerClientes:
                        intent= new Intent(getApplicationContext(),CrearCliente.class);
                        startActivity(intent);
@@ -59,14 +56,12 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Vista no disponible",Toast.LENGTH_SHORT).show();
                             break;
                 }
-
-
                 return true;
             }
         });
-        //  db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, Constantes.BD_NAME).allowMainThreadQueries().build();
-        // String inf= String.valueOf(db.clienteDao().getAllClientes());
-        // Toast.makeText(MainActivity.this,"Info: "+inf,Toast.LENGTH_LONG).show();
+          db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, Constantes.BD_NAME).allowMainThreadQueries().build();
+          String inf= String.valueOf(db.clienteDao().getAllClientes());
+          Toast.makeText(MainActivity.this,"Info: "+inf,Toast.LENGTH_LONG).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

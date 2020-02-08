@@ -3,10 +3,16 @@ package com.example.clientessqlite.Activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -25,15 +31,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class CrearCliente extends AppCompatActivity {
+public class CrearCliente extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ImageButton btnTomarFoto;
     private ImageView imageView;
-    private Button btnAgregarCliente;
+    private Button btnAgregarCliente, btGps;
     private EditText txtNombre, txtRfc, txtTelefono, txtCorreo, txtDireccion, txtLatitud, txtLongitud, txtIduser;
-
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    //Se declara una variable de tipo LocationManager encargada de proporcionar acceso al servicio de localización
+    private LocationManager locManager;
+    //Se declara una variable de tipo Location:
+    private Location loc;
+    private  static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +54,44 @@ public class CrearCliente extends AppCompatActivity {
         btnTomarFoto = (ImageButton) findViewById(R.id.btnFotografia);
         imageView = (ImageView) findViewById(R.id.imgfotoCliente);
 
-        btnAgregarCliente=(Button) findViewById(R.id.btnAgregarCliente);
+        txtNombre = (EditText) findViewById(R.id.txtNombre);
+        txtRfc = (EditText) findViewById(R.id.txtRfc);
+        txtCorreo = (EditText) findViewById(R.id.txtCorreo);
+        txtTelefono = (EditText) findViewById(R.id.txtTelefono);
+        txtDireccion = (EditText) findViewById(R.id.txtDir);
+        txtIduser = (EditText) findViewById(R.id.txtUsuario);
+        txtLatitud = (EditText) findViewById(R.id.txtLat);
+        txtLongitud = (EditText) findViewById(R.id.txtLong);
+
+
+        btnAgregarCliente = (Button) findViewById(R.id.btnAgregarCliente);
+        btGps = (Button) findViewById(R.id.btnGps);
+
+        btGps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double cordenadaGps[] = CordenadasGps();
+                if (cordenadaGps != null) {
+                    txtLatitud.setText(String.valueOf(cordenadaGps[0]));
+                    txtLongitud.setText(String.valueOf(cordenadaGps[1]));
+                } else {
+                    Toast.makeText(getApplicationContext(), "No se puede obtener cordenadas GPS", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         btnAgregarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //encode image to base64 string
                 imageView.buildDrawingCache();
                 Bitmap bitmap = imageView.getDrawingCache();
-                ByteArrayOutputStream stream=new ByteArrayOutputStream();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
-                byte[] image=stream.toByteArray();
-                System.out.println("byte array:"+image);
+                byte[] image = stream.toByteArray();
+                System.out.println("byte array:" + image);
                 String img_str = Base64.encodeToString(image, 0);
-                System.out.println("string:"+img_str);
-                Toast.makeText(getApplicationContext(),""+img_str,Toast.LENGTH_LONG).show();
+                System.out.println("string:" + img_str);
+                Toast.makeText(getApplicationContext(), "" + img_str, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -76,19 +109,21 @@ public class CrearCliente extends AppCompatActivity {
             }
         });
     }
-    public static String ConvertBitmapToString(Bitmap bitmap){
+
+    public static String ConvertBitmapToString(Bitmap bitmap) {
         String encodedImage = "";
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         try {
-            encodedImage= URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
+            encodedImage = URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
         return encodedImage;
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         //Preguntamos si al tomar la foto se clickeo ok
@@ -103,6 +138,32 @@ public class CrearCliente extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Error no se capturo la imagen intente de nuevo", Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    //Obtnemos la cordenada latitud y longitud
+    private double[] CordenadasGps() {
+        //Declaramos un arrglos para almacenar las cordenadas
+        double cordenadas[] = new double[2];
+        //preguntamos para acceder a la geolocalizacion del usuario
+        ActivityCompat.requestPermissions(CrearCliente.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        /*Se comprueba si se han concedido los permisos para mostrar los datos de latitud, longitud, altura y precisión del dispositivo*/
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getApplicationContext(), "No se han definido los permisos necesarios.", Toast.LENGTH_LONG).show();
+
+        } else {
+            /*Se asigna a la clase LocationManager el servicio a nivel de sistema a partir del nombre.*/
+            locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            /*Se asigna a la variable de tipo Location que accederá a la última posición conocida proporcionada por el proveedo*/
+            loc = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Toast.makeText(getApplicationContext(), "Latitud: " + loc.getLatitude() + " longitud: " + loc.getLongitude(), Toast.LENGTH_LONG).show();
+            cordenadas[0] = loc.getLatitude();
+            cordenadas[1] = loc.getLongitude();
+           /* tvLatitud.setText(String.valueOf(loc.getLatitude()));
+            tvLongitud.setText(String.valueOf());
+            tvAltura.setText(String.valueOf(loc.getAltitude()));
+            tvPrecision.setText(String.valueOf(loc.getAccuracy()));*/
+        }
+        return cordenadas;
     }
 
     private void setToolbar() {
