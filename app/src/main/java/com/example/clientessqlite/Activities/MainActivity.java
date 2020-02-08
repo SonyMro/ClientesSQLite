@@ -24,9 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.clientessqlite.ConfiguracionDB.Constantes;
 import com.example.clientessqlite.DataBase.AppDatabase;
-import com.example.clientessqlite.Fragments.AlertFragment;
-import com.example.clientessqlite.Fragments.EmailFragment;
-import com.example.clientessqlite.Fragments.InfoFragment;
+
 import com.example.clientessqlite.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -44,28 +42,15 @@ public class MainActivity extends AppCompatActivity {
         setToolbar();
         drawerLayout = (DrawerLayout) findViewById(R.id.drower_layout);
         navigationView = (NavigationView) findViewById(R.id.navView);
-        setFramentByDefault();
         navigationView.setItemIconTintList(null);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                boolean fragmentTrasaccion = false;
-                Fragment fragment = null;
+
                 Intent intent =null;
                 switch (menuItem.getItemId()) {
-                    case R.id.menu_mail:
-                        fragment = new EmailFragment();
-                        fragmentTrasaccion = true;
-                        break;
-                    case R.id.menu_alert:
-                        fragment = new AlertFragment();
-                        fragmentTrasaccion = true;
-                        break;
-                    case R.id.menu_info:
-                        fragment = new InfoFragment();
-                        fragmentTrasaccion = true;
-                        break;
+
                     case R.id.menu_VerClientes:
                        intent= new Intent(getApplicationContext(),CrearCliente.class);
                        startActivity(intent);
@@ -74,11 +59,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Vista no disponible",Toast.LENGTH_SHORT).show();
                             break;
                 }
-                if (fragmentTrasaccion) {
-                    changeFragment(fragment,menuItem);
-                    //
-                    drawerLayout.closeDrawers();
-                }
+
 
                 return true;
             }
@@ -96,19 +77,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private  void setFramentByDefault(){
-       changeFragment(new EmailFragment(),navigationView.getMenu().getItem(0));
-    }
-    private void changeFragment(Fragment fragment, MenuItem menuItem){
-        getSupportFragmentManager()
-                .beginTransaction().
-                replace(R.id.content_frame, fragment)
-                .commit();
-        //Con setChecked mostramos que el item esta selecionado
-        menuItem.setChecked(true);
-        //Obtenemos el texto del item y lo asignamos al frament
-        getSupportActionBar().setTitle(menuItem.getTitle());
-    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
