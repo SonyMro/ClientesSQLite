@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 boolean fragmentTrasaccion = false;
                 Fragment fragment = null;
+                Intent intent =null;
                 switch (menuItem.getItemId()) {
                     case R.id.menu_mail:
                         fragment = new EmailFragment();
@@ -64,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_info:
                         fragment = new InfoFragment();
                         fragmentTrasaccion = true;
+                        break;
+                    case R.id.menu_VerClientes:
+                       intent= new Intent(getApplicationContext(),CrearCliente.class);
+                       startActivity(intent);
                         break;
                         default:
                             Toast.makeText(getApplicationContext(),"Vista no disponible",Toast.LENGTH_SHORT).show();
