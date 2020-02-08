@@ -32,6 +32,17 @@ public class Cliente {
     private String Longitud;
     @ColumnInfo(name = "iduser")
     private String iduser;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+
 
     public int getIdCliente() {
         return idCliente;

@@ -2,6 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/menu_Principal"
+            android:icon="@android:drawable/radiobutton_off_background"
+            android:title="Inicio"/>
+        <item
+            android:id="@+id/menu_VerClientes"
+            android:icon="@drawable/cliente"
+            android:title="Lista de Clientes" />
+        <item
+            android:id="@+id/menu_ExportarDatos"
+            android:icon="@drawable/basededatos"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:title="Exportar Json"/>
+        <item
+            android:id="@+id/menu_TomarFoto"
+            android:icon="@drawable/arcamera"
+            android:title="Tomar Foto" />
+        <item
             android:id="@+id/menu_mail"
             android:icon="@android:drawable/ic_dialog_email"
             android:title="Email" />
@@ -14,7 +31,7 @@
             android:icon="@android:drawable/ic_dialog_info"
             android:title="Information" />
     </group>
-    <item android:title="OtrasOpciones">
+    <item android:title="Otras Opciones">
         <menu>
             <item
                 android:id="@+id/menu_opcion_1"
