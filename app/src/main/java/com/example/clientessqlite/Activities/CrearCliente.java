@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 
 import com.example.clientessqlite.R;
 import com.google.android.material.navigation.NavigationView;
@@ -17,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 public class CrearCliente extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private ImageButton btnTomarFoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class CrearCliente extends AppCompatActivity {
         setToolbar();
         drawerLayout = (DrawerLayout) findViewById(R.id.drower_layout);
         navigationView = (NavigationView) findViewById(R.id.navView);
+
     }
 
     private void setToolbar() {

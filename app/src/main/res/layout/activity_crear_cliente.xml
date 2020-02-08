@@ -8,45 +8,50 @@
     <include
         android:id="@+id/pCreartoolbar"
         layout="@layout/toolbar" />
-
     <EditText
         android:id="@+id/txtNombre"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/style_edit_text"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <EditText
         android:id="@+id/txtRfc"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/style_edit_text"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="rfc"
+        android:padding="10dp"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombre"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <EditText
         android:id="@+id/txtUsuario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/style_edit_text"
+        android:padding="10dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="IdUsuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtRfc"
         app:layout_constraintVertical_bias="0.047" />
@@ -54,14 +59,16 @@
     <EditText
         android:id="@+id/txtCorreo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/style_edit_text"
+        android:padding="10dp"
         android:layout_marginBottom="220dp"
         android:ems="10"
         android:hint="Correo"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtUsuario"
         app:layout_constraintVertical_bias="0.2" />
@@ -69,44 +76,50 @@
     <EditText
         android:id="@+id/txtTelefono"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/style_edit_text"
         android:ems="10"
         android:hint="Telefono"
         android:inputType="phone"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
-        app:layout_constraintVertical_bias="0.07" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <EditText
         android:id="@+id/editText7"
-        android:layout_width="169dp"
-        android:layout_height="39dp"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:background="@drawable/style_edit_text"
         android:ems="10"
         android:hint="Latitud"
         android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.338"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintVertical_bias="0.10" />
 
     <EditText
         android:id="@+id/editText8"
-        android:layout_width="148dp"
-        android:layout_height="39dp"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:background="@drawable/style_edit_text"
         android:ems="10"
         android:hint="Longitud"
         android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="1.00"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintVertical_bias="0.10" />
 
     <Button
         android:id="@+id/button"
@@ -123,37 +136,44 @@
     <EditText
         android:id="@+id/editText9"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/style_edit_text"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Dirección"
+        android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
-        app:layout_constraintVertical_bias="0.403" />
+        app:layout_constraintVertical_bias="0.503" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnAgregarCliente"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_height="55dp"
+        android:background="@drawable/style_button"
+        android:text="Agregar Cliente"
+        android:textColor="#ffff"
+        android:textSize="15dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText9"
-        app:layout_constraintVertical_bias="0.97" />
+        app:layout_constraintTop_toBottomOf="@+id/editText9" />
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="227dp"
-        android:layout_height="141dp"
+        android:id="@+id/btnFotografia"
+        android:layout_width="202dp"
+        android:layout_height="125dp"
+        android:background="@drawable/style_edit_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pCreartoolbar"
         app:layout_constraintVertical_bias="0.022"
-        app:srcCompat="@drawable/arcamera" />
+        app:srcCompat="@drawable/arcamera"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
