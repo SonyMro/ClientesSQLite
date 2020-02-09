@@ -34,6 +34,7 @@ public class Cliente {
     private String iduser;
     @ColumnInfo(name = "imagen")
     private String imagen;
+
     public String getImagen() {
         return imagen;
     }

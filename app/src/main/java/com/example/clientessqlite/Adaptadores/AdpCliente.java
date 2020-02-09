@@ -49,25 +49,27 @@ public class AdpCliente extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if(convertView==null){
-            LayoutInflater inflater= LayoutInflater.from(this.context);
-            convertView=inflater.inflate(this.layout,null);
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(this.context);
+            convertView = inflater.inflate(this.layout, null);
             holder = new ViewHolder();
-            holder.idView=(TextView) convertView.findViewById(R.id.lblIdCliente);
-            holder.nombreView=(TextView) convertView.findViewById(R.id.lblNombreCliente);
-            holder.Rfcview=(TextView) convertView.findViewById(R.id.lblRfcCliente);
-            holder.Correoview=(TextView) convertView.findViewById(R.id.lblCorreoCliente);
-            holder.Phoneview=(TextView) convertView.findViewById(R.id.lblTelefonoCliente);
-            holder.Direcionview=(TextView) convertView.findViewById(R.id.lblDirreccionCliente);
-            holder.Latview=(TextView) convertView.findViewById(R.id.lblLatCliente);
-            holder.longview=(TextView) convertView.findViewById(R.id.lblLongCliente);
-            holder.foto=(ImageView) convertView.findViewById(R.id.imgfotoCliente);
+            holder.idView = (TextView) convertView.findViewById(R.id.lblIdCliente);
+            holder.nombreView = (TextView) convertView.findViewById(R.id.lblNombreCliente);
+            holder.Rfcview = (TextView) convertView.findViewById(R.id.lblRfcCliente);
+            holder.Correoview = (TextView) convertView.findViewById(R.id.lblCorreoCliente);
+            holder.Phoneview = (TextView) convertView.findViewById(R.id.lblTelefonoCliente);
+            holder.Direcionview = (TextView) convertView.findViewById(R.id.lblDirreccionCliente);
+            holder.Latview = (TextView) convertView.findViewById(R.id.lblLatCliente);
+            holder.longview = (TextView) convertView.findViewById(R.id.lblLongCliente);
+            holder.circleImageView = (CircleImageView) convertView.findViewById(R.id.ImgLis);
             convertView.setTag(holder);
-        }else{
-            holder =(ViewHolder) convertView.getTag();
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+
+            //  holder.foto.setImageBitmap(bitmap(currenCliente.getImagen()));
         }
         Cliente currenCliente = clientes.get(position);
-        holder.idView.setText(currenCliente.getIdCliente());
+        holder.idView.setText(String.valueOf(currenCliente.getIdCliente()));
         holder.nombreView.setText(currenCliente.getNombre());
         holder.Rfcview.setText(currenCliente.getRfc());
         holder.Correoview.setText(currenCliente.getCorreo());
@@ -75,15 +77,17 @@ public class AdpCliente extends BaseAdapter {
         holder.Direcionview.setText(currenCliente.getDireccion());
         holder.Latview.setText(currenCliente.getLatitud());
         holder.longview.setText(currenCliente.getLongitud());
-        holder.foto.setImageBitmap(bitmap(currenCliente.getImagen()));
+        holder.circleImageView.setImageBitmap(bitmap(currenCliente.getImagen()));
+
+       
         return convertView;
     }
-    public Bitmap bitmap(String base64String){
-        String base64Image = base64String.split(",")[1];
 
-        byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        return  decodedByte;
+    public Bitmap bitmap(String base64String) {
+
+        byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0,decodedString.length);
+        return decodedByte;
     }
 
 
@@ -98,6 +102,6 @@ public class AdpCliente extends BaseAdapter {
         private TextView Direcionview;
         private TextView Latview;
         private TextView longview;
-}
+    }
 
 }
