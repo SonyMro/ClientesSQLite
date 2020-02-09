@@ -32,15 +32,16 @@ public class Cliente {
     private String Longitud;
     @ColumnInfo(name = "iduser")
     private String iduser;
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    private byte[] image;
-    public byte[] getImage() {
-        return image;
+    @ColumnInfo(name = "imagen")
+    private String imagen;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
+
 
 
 
@@ -116,20 +117,9 @@ public class Cliente {
         this.iduser = iduser;
     }
 
-    public Cliente(int idCliente, String rfc, String nombre, String direccion, String telefono, String correo, String latitud, String longitud, String iduser) {
-        this.idCliente = idCliente;
-        this.rfc = rfc;
-        this.Nombre = nombre;
-        this.direccion = direccion;
-        this.Telefono = telefono;
-        this.Correo = correo;
-        this.Latitud = latitud;
-        this.Longitud = longitud;
-        this.iduser = iduser;
-    }
-
     public Cliente() {
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static Cliente fromContentValues(ContentValues values) {
@@ -142,6 +132,7 @@ public class Cliente {
         }
         return obj;
     }
+
 
     @Override
     public String toString() {

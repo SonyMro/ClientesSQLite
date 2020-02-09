@@ -24,25 +24,29 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.clientessqlite.DataBase.AppDatabase;
+import com.example.clientessqlite.Entidades.Cliente;
 import com.example.clientessqlite.R;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 public class CrearCliente extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
+    private AppDatabase db;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ImageButton btnTomarFoto;
-    private ImageView imageView;
+    private ImageView foto;
     private Button btnAgregarCliente, btGps;
     private EditText txtNombre, txtRfc, txtTelefono, txtCorreo, txtDireccion, txtLatitud, txtLongitud, txtIduser;
     //Se declara una variable de tipo LocationManager encargada de proporcionar acceso al servicio de localización
     private LocationManager locManager;
     //Se declara una variable de tipo Location:
     private Location loc;
-    private  static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +56,7 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
         drawerLayout = (DrawerLayout) findViewById(R.id.drower_layout);
         navigationView = (NavigationView) findViewById(R.id.navView);
         btnTomarFoto = (ImageButton) findViewById(R.id.btnFotografia);
-        imageView = (ImageView) findViewById(R.id.imgfotoCliente);
+        foto = (ImageView) findViewById(R.id.imgfotoCliente);
 
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtRfc = (EditText) findViewById(R.id.txtRfc);
@@ -67,6 +71,13 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
         btnAgregarCliente = (Button) findViewById(R.id.btnAgregarCliente);
         btGps = (Button) findViewById(R.id.btnGps);
 
+        btnAgregarCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // InsertarCliente();
+            }
+        });
+
         btGps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,21 +88,6 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
                 } else {
                     Toast.makeText(getApplicationContext(), "No se puede obtener cordenadas GPS", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        btnAgregarCliente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //encode image to base64 string
-                imageView.buildDrawingCache();
-                Bitmap bitmap = imageView.getDrawingCache();
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
-                byte[] image = stream.toByteArray();
-                System.out.println("byte array:" + image);
-                String img_str = Base64.encodeToString(image, 0);
-                System.out.println("string:" + img_str);
-                Toast.makeText(getApplicationContext(), "" + img_str, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -105,23 +101,39 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
                 Toast.makeText(getApplicationContext(), "Hola", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
 
-    public static String ConvertBitmapToString(Bitmap bitmap) {
-        String encodedImage = "";
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        try {
-            encodedImage = URLEncoder.encode(Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.DEFAULT), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+   /* private  void  InsertarCliente(){
+        Cliente cliente= new Cliente();
+        cliente.setNombre(txtNombre.getText().toString());
+        cliente.setRfc(txtRfc.getText().toString());
+        cliente.setTelefono(txtTelefono.getText().toString());
+        cliente.setCorreo(txtCorreo.getText().toString());
+        cliente.setDireccion(txtDireccion.getText().toString());
+        cliente.setLongitud(txtLongitud.getText().toString());
+        cliente.setLatitud(txtLatitud.getText().toString());
+        cliente.setIduser(txtIduser.getText().toString());
+        cliente.setImagen(ConvertirImegViewToBase64(foto));
+        long resultado=db.clienteDao().insertarCliente(cliente);
+        List<Cliente> lista= db.clienteDao().getAllClientes();
+        if(resultado>0){
+         Toast.makeText(getApplicationContext(),""+lista.toString(),Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getApplicationContext(),"Hay un error",Toast.LENGTH_LONG).show();
         }
-
-        return encodedImage;
+    }*/
+    private String ConvertirImegViewToBase64(ImageView imageView) {
+        //encode image to base64 string
+        imageView.buildDrawingCache();
+        Bitmap bitmap = imageView.getDrawingCache();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+        byte[] image = stream.toByteArray();
+       String img_str = Base64.encodeToString(image, 0);
+        Toast.makeText(getApplicationContext(), ""+img_str , Toast.LENGTH_LONG).show();
+        return img_str;
     }
 
     @Override
@@ -133,7 +145,7 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
             //Creamo un bitmap y obnetemos la data
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             //Adignamos la fotoa a nuestra imgView
-            imageView.setImageBitmap(imageBitmap);
+            foto.setImageBitmap(imageBitmap);
         } else {
             Toast.makeText(getApplicationContext(), "Error no se capturo la imagen intente de nuevo", Toast.LENGTH_SHORT).show();
         }

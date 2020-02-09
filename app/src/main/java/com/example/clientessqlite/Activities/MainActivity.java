@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private AppDatabase db;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+
     //CircleImageView civ = (CircleImageView) findViewById(R.id.imagen_circular);
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -46,22 +47,23 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Intent intent =null;
+                Intent intent = null;
                 switch (menuItem.getItemId()) {
                     case R.id.menu_VerClientes:
-                       intent= new Intent(getApplicationContext(),CrearCliente.class);
-                       startActivity(intent);
+                        intent = new Intent(getApplicationContext(), CrearCliente.class);
+                        startActivity(intent);
                         break;
-                        default:
-                            Toast.makeText(getApplicationContext(),"Vista no disponible",Toast.LENGTH_SHORT).show();
-                            break;
+                    default:
+                        Toast.makeText(getApplicationContext(), "Vista no disponible", Toast.LENGTH_SHORT).show();
+                        break;
                 }
                 return true;
             }
         });
-          db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, Constantes.BD_NAME).allowMainThreadQueries().build();
-          String inf= String.valueOf(db.clienteDao().getAllClientes());
-          Toast.makeText(MainActivity.this,"Info: "+inf,Toast.LENGTH_LONG).show();
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, Constantes.BD_NAME)
+                .allowMainThreadQueries().build();
+        String inf = String.valueOf(db.clienteDao().getAllClientes());
+        Toast.makeText(MainActivity.this, "Info: " + inf, Toast.LENGTH_LONG).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -71,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 
 
     @Override
