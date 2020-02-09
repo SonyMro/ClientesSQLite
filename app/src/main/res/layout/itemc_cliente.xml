@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginTop="50dp"
-    android:background="#c4d4e9"
+    android:background="#f8f8ff"
     android:orientation="horizontal">
     <!--Image-->
     <LinearLayout
         android:layout_width="100dp"
         android:layout_height="match_parent"
         android:layout_marginRight="10dp"
-        android:background="#000"
         android:orientation="horizontal">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ImgLis"
@@ -24,16 +23,16 @@
             app:civ_border_color="#2d567a"
             />
     </LinearLayout>
-
+    <!--Layout para la informacion del usuario-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000"
+
         android:orientation="vertical">
+        <!--Layout para la informacion nombre he id del usuario-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="#00913f"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/lblIdCliente"
@@ -52,19 +51,18 @@
                 android:textColor="#000"
                 />
         </LinearLayout>
+        <!--Layout para la informacion del usuario-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="#fff"
             android:orientation="horizontal"
             >
             <TextView
                 android:id="@+id/lblRfcCliente"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:background="#cc0000"
                 android:text="CUPU800825569"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 android:textColor="#000"
                 android:textSize="12dp"
                 />
@@ -72,72 +70,66 @@
                 android:id="@+id/lblCorreoCliente"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#6f8f00"
                 android:text="mro.15gp@outlook.com"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 android:textColor="#000"
                 android:textSize="12dp"
                 />
         </LinearLayout>
+        <!--Layout para la informaion telefono y el idDelUsuario del server del usuario-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:background="#fff"
             android:orientation="horizontal"
             >
             <TextView
                 android:id="@+id/lblTelefonoCliente"
                 android:layout_width="210dp"
                 android:layout_height="match_parent"
-                android:background="#5e3f5f"
                 android:text="(55)5565195058"
                 android:textSize="12dp"
                 android:textColor="#000"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 />
             <TextView
                 android:id="@+id/lblIdusuario"
                 android:layout_width="92dp"
                 android:layout_height="match_parent"
-                android:background="#595059"
                 android:text="190"
                 android:textSize="12dp"
                 android:textColor="#000"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 />
         </LinearLayout>
+        <!--Layout para la informaion latitud y longitud del usuario-->
         <LinearLayout
             android:layout_height="20dp"
             android:layout_width="match_parent"
-            android:background="#fff"
             android:orientation="horizontal"
-
             >
             <TextView
                 android:id="@+id/lblLatCliente"
-                android:layout_width="151dp"
+                android:layout_width="145dp"
                 android:layout_height="match_parent"
-                android:background="#595059"
                 android:text="19.1024685"
                 android:textSize="12dp"
                 android:textColor="#000"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 />
             <TextView
                 android:id="@+id/lblLongCliente"
-                android:layout_width="151dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#47704b"
                 android:text="-98.2610707"
                 android:textSize="12dp"
                 android:textColor="#000"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 />
         </LinearLayout>
+        <!--Layout para la informacion de direcion del usuario-->
         <LinearLayout
             android:layout_height="20dp"
             android:layout_width="match_parent"
-            android:background="#fff"
             android:orientation="horizontal"
             >
             <TextView
@@ -147,7 +139,7 @@
                 android:text="Privada aldama San torum Puebla puebla  ahahbahbabahbajbahjbajb"
                 android:textSize="12dp"
                 android:textColor="#000"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 />
         </LinearLayout>
     </LinearLayout>
