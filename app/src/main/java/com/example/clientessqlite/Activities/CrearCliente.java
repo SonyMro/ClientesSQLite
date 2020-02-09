@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.room.Room;
 
 import android.Manifest;
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.clientessqlite.ConfiguracionDB.Constantes;
 import com.example.clientessqlite.DataBase.AppDatabase;
 import com.example.clientessqlite.Entidades.Cliente;
 import com.example.clientessqlite.R;
@@ -70,11 +72,27 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
 
         btnAgregarCliente = (Button) findViewById(R.id.btnAgregarCliente);
         btGps = (Button) findViewById(R.id.btnGps);
-
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, Constantes.BD_NAME).allowMainThreadQueries().build();
         btnAgregarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // InsertarCliente();
+                Cliente obj = new Cliente();
+                obj.setNombre(txtNombre.getText().toString());
+                obj.setRfc(txtRfc.getText().toString());
+                obj.setTelefono(txtTelefono.getText().toString());
+                obj.setCorreo(txtCorreo.getText().toString());
+                obj.setDireccion(txtDireccion.getText().toString());
+                obj.setLongitud(txtLongitud.getText().toString());
+                obj.setLatitud(txtLatitud.getText().toString());
+                obj.setIduser(txtIduser.getText().toString());
+               obj.setImagen(ConvertirImegViewToBase64(foto));
+                long resultado = db.clienteDao().insertar(obj);
+                List<Cliente> lista = db.clienteDao().getAllClientes();
+                if (resultado > 0) {
+                    Toast.makeText(getApplicationContext(), "" + lista.toString(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Hay un error", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -105,25 +123,10 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
         });
     }
 
-   /* private  void  InsertarCliente(){
-        Cliente cliente= new Cliente();
-        cliente.setNombre(txtNombre.getText().toString());
-        cliente.setRfc(txtRfc.getText().toString());
-        cliente.setTelefono(txtTelefono.getText().toString());
-        cliente.setCorreo(txtCorreo.getText().toString());
-        cliente.setDireccion(txtDireccion.getText().toString());
-        cliente.setLongitud(txtLongitud.getText().toString());
-        cliente.setLatitud(txtLatitud.getText().toString());
-        cliente.setIduser(txtIduser.getText().toString());
-        cliente.setImagen(ConvertirImegViewToBase64(foto));
-        long resultado=db.clienteDao().insertarCliente(cliente);
-        List<Cliente> lista= db.clienteDao().getAllClientes();
-        if(resultado>0){
-         Toast.makeText(getApplicationContext(),""+lista.toString(),Toast.LENGTH_LONG).show();
-        }else{
-            Toast.makeText(getApplicationContext(),"Hay un error",Toast.LENGTH_LONG).show();
-        }
-    }*/
+    private void InsertarCliente() {
+
+    }
+
     private String ConvertirImegViewToBase64(ImageView imageView) {
         //encode image to base64 string
         imageView.buildDrawingCache();
@@ -131,8 +134,8 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
         byte[] image = stream.toByteArray();
-       String img_str = Base64.encodeToString(image, 0);
-        Toast.makeText(getApplicationContext(), ""+img_str , Toast.LENGTH_LONG).show();
+        String img_str = Base64.encodeToString(image, 0);
+        Toast.makeText(getApplicationContext(), "" + img_str, Toast.LENGTH_LONG).show();
         return img_str;
     }
 

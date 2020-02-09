@@ -24,7 +24,7 @@ public interface ClienteDao {
     int ActualizarCliente(Cliente cliente);
 
     @Insert
-    long insertarCliente(Cliente cliente);
+    long insertar(Cliente cliente);
 
     @Query("SELECT * FROM " + Cliente.TABLE_NAME)
     List<Cliente> getAllClientes();
