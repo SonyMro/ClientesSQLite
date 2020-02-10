@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
                         intent= new Intent(getApplicationContext(),MostrarClientes.class);
                         startActivity(intent);
                         break;
+                    case R.id.menu_Principal:
+                        intent= new Intent(getApplicationContext(),editarCliente.class);
+                        startActivity(intent);
+                        break;
                     default:
                         Toast.makeText(getApplicationContext(), "Vista no disponible", Toast.LENGTH_SHORT).show();
                         break;

@@ -36,7 +36,7 @@ public class MostrarClientes extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-             //   Toast.makeText(getBaseContext(),""+ListCliente.get(position),Toast.LENGTH_LONG).show();
+              Toast.makeText(getBaseContext(),""+ListCliente.get(position),Toast.LENGTH_LONG).show();
             }
         });
         AdpCliente adpCliente= new AdpCliente(this,R.layout.itemc_cliente,ListCliente);

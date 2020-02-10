@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.CrearCliente">
+    tools:context=".Activities.editarCliente">
     <include
-        android:id="@+id/pCreartoolbar"
+        android:id="@+id/pEditartoolbar"
         layout="@layout/toolbar" />
     <EditText
-        android:id="@+id/txtNombre"
+        android:id="@+id/txtNombreEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.305" />
 
     <EditText
-        android:id="@+id/txtRfc"
+        android:id="@+id/txtRfcEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -37,11 +37,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreEdit"
         app:layout_constraintVertical_bias="0.04" />
 
     <EditText
-        android:id="@+id/txtUsuario"
+        android:id="@+id/txtUsuarioEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -53,11 +53,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtRfc"
+        app:layout_constraintTop_toBottomOf="@+id/txtRfcEdit"
         app:layout_constraintVertical_bias="0.047" />
 
     <EditText
-        android:id="@+id/txtCorreo"
+        android:id="@+id/txtCorreoEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -70,11 +70,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuarioEdit"
         app:layout_constraintVertical_bias="0.2" />
 
     <EditText
-        android:id="@+id/txtTelefono"
+        android:id="@+id/txtTelefonoEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -86,11 +86,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCorreo"
+        app:layout_constraintTop_toBottomOf="@+id/txtCorreoEdit"
         app:layout_constraintVertical_bias="0.049" />
 
     <EditText
-        android:id="@+id/txtLat"
+        android:id="@+id/txtLatEdit"
         android:layout_width="135dp"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -102,11 +102,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.338"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
+        app:layout_constraintTop_toBottomOf="@+id/txtTelefonoEdit"
         app:layout_constraintVertical_bias="0.10" />
 
     <EditText
-        android:id="@+id/txtLong"
+        android:id="@+id/txtLongEdit"
         android:layout_width="135dp"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -118,11 +118,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.00"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
+        app:layout_constraintTop_toBottomOf="@+id/txtTelefonoEdit"
         app:layout_constraintVertical_bias="0.10" />
 
     <Button
-        android:id="@+id/btnGps"
+        android:id="@+id/btnGpsEdit"
         android:layout_width="81dp"
         android:layout_height="64dp"
         android:background="@android:drawable/ic_menu_mapmode"
@@ -130,11 +130,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
+        app:layout_constraintTop_toBottomOf="@+id/txtTelefonoEdit"
         app:layout_constraintVertical_bias="0.02" />
 
     <EditText
-        android:id="@+id/txtDir"
+        android:id="@+id/txtDirEdit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/style_edit_text"
@@ -146,11 +146,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTelefono"
+        app:layout_constraintTop_toBottomOf="@+id/txtTelefonoEdit"
         app:layout_constraintVertical_bias="0.503" />
 
     <Button
-        android:id="@+id/btnAgregarCliente"
+        android:id="@+id/btnAEditarCliente"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/style_button"
@@ -169,6 +169,7 @@
         android:id="@+id/btnFotografia"
         android:layout_width="120dp"
         android:layout_height="30dp"
+        android:layout_marginBottom="532dp"
         android:background="@drawable/style_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -182,9 +183,10 @@
         android:id="@+id/imgfotoCliente"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="572dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pCreartoolbar"
         app:layout_constraintVertical_bias="0.013"

@@ -134,10 +134,26 @@ public class Cliente {
         return obj;
     }
 
+    public String toJsonString(){
+        return "";
+    }
+
+    public Cliente(int idCliente, String rfc, String nombre, String direccion, String telefono, String correo, String latitud, String longitud, String iduser, String imagen) {
+        this.idCliente = idCliente;
+        this.rfc = rfc;
+        Nombre = nombre;
+        this.direccion = direccion;
+        Telefono = telefono;
+        Correo = correo;
+        Latitud = latitud;
+        Longitud = longitud;
+        this.iduser = iduser;
+        this.imagen = imagen;
+    }
 
     @Override
     public String toString() {
-        return "Clientes{" +
+        return "Cliente{" +
                 "idCliente=" + idCliente +
                 ", rfc='" + rfc + '\'' +
                 ", Nombre='" + Nombre + '\'' +
@@ -147,6 +163,7 @@ public class Cliente {
                 ", Latitud='" + Latitud + '\'' +
                 ", Longitud='" + Longitud + '\'' +
                 ", iduser='" + iduser + '\'' +
+                ", imagen='" + imagen + '\'' +
                 '}';
     }
 }
