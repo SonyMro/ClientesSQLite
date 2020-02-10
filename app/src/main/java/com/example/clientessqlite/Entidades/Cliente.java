@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.os.Build;
 import android.provider.BaseColumns;
 
+import java.io.Serializable;
+
 import androidx.annotation.RequiresApi;
 import androidx.room.*;
 
 @Entity(tableName = Cliente.TABLE_NAME, indices = {@Index(value = {"rfc"}, unique = true)})
-public class Cliente {
+public class Cliente implements Serializable {
     public static final String TABLE_NAME = "TblClientes";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_ID = BaseColumns._ID;
@@ -134,9 +136,6 @@ public class Cliente {
         return obj;
     }
 
-    public String toJsonString(){
-        return "";
-    }
 
     public Cliente(int idCliente, String rfc, String nombre, String direccion, String telefono, String correo, String latitud, String longitud, String iduser, String imagen) {
         this.idCliente = idCliente;

@@ -85,11 +85,12 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
                 obj.setLongitud(txtLongitud.getText().toString());
                 obj.setLatitud(txtLatitud.getText().toString());
                 obj.setIduser(txtIduser.getText().toString());
-               obj.setImagen(ConvertirImegViewToBase64(foto));
+                obj.setImagen(ConvertirImegViewToBase64(foto));
                 long resultado = db.clienteDao().insertar(obj);
                 List<Cliente> lista = db.clienteDao().getAllClientes();
                 if (resultado > 0) {
-                    Toast.makeText(getApplicationContext(), "" + lista.toString(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Hay un error", Toast.LENGTH_LONG).show();
                 }
@@ -118,13 +119,9 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
-                Toast.makeText(getApplicationContext(), "Hola", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Hola", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void InsertarCliente() {
-
     }
 
     private String ConvertirImegViewToBase64(ImageView imageView) {

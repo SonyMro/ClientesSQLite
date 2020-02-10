@@ -36,14 +36,22 @@ public class MostrarClientes extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-              Toast.makeText(getBaseContext(),""+ListCliente.get(position),Toast.LENGTH_LONG).show();
+           //   Toast.makeText(getBaseContext(),""+ListCliente.get(position),Toast.LENGTH_LONG).show();
+                Intent intent= new Intent(MostrarClientes.this,editarCliente.class);
+                intent.putExtra("Editarcliente",ListCliente.get(position));
+                startActivity(intent);
             }
         });
         AdpCliente adpCliente= new AdpCliente(this,R.layout.itemc_cliente,ListCliente);
         listView.setAdapter(adpCliente);
 
     }
-
+    //Meotodo para el boton flotante
+    public  void  AgregarCliente(View view){
+        Intent intent = new Intent(getApplicationContext(), CrearCliente.class);
+        startActivity(intent);
+       // Toast.makeText(getBaseContext(),"Hddjdjdjdjdj dj dj jd",Toast.LENGTH_LONG).show();
+    }
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.pmostrarToolvar);
         setSupportActionBar(toolbar); //No Problerm

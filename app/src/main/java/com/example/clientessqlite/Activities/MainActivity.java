@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private AppDatabase db;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private TextView lbtCantidaClinetes;
 
     //CircleImageView civ = (CircleImageView) findViewById(R.id.imagen_circular);
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -43,23 +45,27 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drower_layout);
         navigationView = (NavigationView) findViewById(R.id.navView);
         navigationView.setItemIconTintList(null);
-
+        lbtCantidaClinetes =(TextView)findViewById(R.id.lbtCantida);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Intent intent = null;
                 switch (menuItem.getItemId()) {
                     case R.id.menu_VerClientes:
-                        intent = new Intent(getApplicationContext(), CrearCliente.class);
+
+                        intent= new Intent(getApplicationContext(),MostrarClientes.class);
                         startActivity(intent);
                         break;
                     case R.id.menu_ExportarDatos:
-                        intent= new Intent(getApplicationContext(),MostrarClientes.class);
-                        startActivity(intent);
+                        //intent= new Intent(getApplicationContext(),MostrarClientes.class);
+                        //startActivity(intent);
                         break;
                     case R.id.menu_Principal:
                         intent= new Intent(getApplicationContext(),editarCliente.class);
                         startActivity(intent);
+                        break;
+                    case R.id.menu_salir:
+                        finish();
                         break;
                     default:
                         Toast.makeText(getApplicationContext(), "Vista no disponible", Toast.LENGTH_SHORT).show();
@@ -70,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
         });
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, Constantes.BD_NAME)
                 .allowMainThreadQueries().build();
-        String inf = String.valueOf(db.clienteDao().getAllClientes());
-        Toast.makeText(MainActivity.this, "Info: " + inf, Toast.LENGTH_LONG).show();
+        String cantidad = String.valueOf(db.clienteDao().CantidadClinetes());
+        lbtCantidaClinetes.setText("Cantidad de Clientes: "+cantidad);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

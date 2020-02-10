@@ -8,40 +8,22 @@
         <item
             android:id="@+id/menu_VerClientes"
             android:icon="@drawable/cliente"
-            android:title="Lista de Clientes" />
+            android:title="Ver Clientes" />
         <item
             android:id="@+id/menu_ExportarDatos"
             android:icon="@drawable/basededatos"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:title="Exportar Json"/>
-        <item
-            android:id="@+id/menu_TomarFoto"
-            android:icon="@drawable/arcamera"
-            android:title="Tomar Foto" />
-        <item
-            android:id="@+id/menu_mail"
-            android:icon="@android:drawable/ic_dialog_email"
-            android:title="Email" />
-        <item
-            android:id="@+id/menu_alert"
-            android:icon="@android:drawable/ic_dialog_alert"
-            android:title="Alerts" />
-        <item
-            android:id="@+id/menu_info"
-            android:icon="@android:drawable/ic_dialog_info"
-            android:title="Information" />
+
+
     </group>
     <item android:title="Otras Opciones">
         <menu>
             <item
-                android:id="@+id/menu_opcion_1"
-                android:icon="@android:drawable/ic_dialog_dialer"
-                android:title="Opcion 1" />
+                android:id="@+id/menu_salir"
+                android:icon="@android:drawable/ic_delete"
+                android:title="Salir" />
 
-            <item
-                android:id="@+id/menu_opcion_2"
-                android:icon="@android:drawable/ic_dialog_dialer"
-                android:title="Opcion 2" />
         </menu>
     </item>
 </menu>
