@@ -76,24 +76,29 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
         btnAgregarCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cliente obj = new Cliente();
-                obj.setNombre(txtNombre.getText().toString());
-                obj.setRfc(txtRfc.getText().toString());
-                obj.setTelefono(txtTelefono.getText().toString());
-                obj.setCorreo(txtCorreo.getText().toString());
-                obj.setDireccion(txtDireccion.getText().toString());
-                obj.setLongitud(txtLongitud.getText().toString());
-                obj.setLatitud(txtLatitud.getText().toString());
-                obj.setIduser(txtIduser.getText().toString());
-                obj.setImagen(ConvertirImegViewToBase64(foto));
-                long resultado = db.clienteDao().insertar(obj);
-                List<Cliente> lista = db.clienteDao().getAllClientes();
-                if (resultado > 0) {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                if (ValidarCampos()) {
+                    Cliente obj = new Cliente();
+                    obj.setNombre(txtNombre.getText().toString());
+                    obj.setRfc(txtRfc.getText().toString());
+                    obj.setTelefono(txtTelefono.getText().toString());
+                    obj.setCorreo(txtCorreo.getText().toString());
+                    obj.setDireccion(txtDireccion.getText().toString());
+                    obj.setLongitud(txtLongitud.getText().toString());
+                    obj.setLatitud(txtLatitud.getText().toString());
+                    obj.setIduser(txtIduser.getText().toString());
+                    obj.setImagen(ConvertirImegViewToBase64(foto));
+                    long resultado = db.clienteDao().insertar(obj);
+                    List<Cliente> lista = db.clienteDao().getAllClientes();
+                    if (resultado > 0) {
+                        Intent intent = new Intent(getApplicationContext(), MostrarClientes.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Hay un error", Toast.LENGTH_LONG).show();
+                    }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Hay un error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Verifique que los campos estén llenos correctamente", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 
@@ -109,7 +114,6 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
                 }
             }
         });
-
         btnTomarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,8 +136,47 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
         byte[] image = stream.toByteArray();
         String img_str = Base64.encodeToString(image, 0);
-    //    Toast.makeText(getApplicationContext(), "" + img_str, Toast.LENGTH_LONG).show();
+        //    Toast.makeText(getApplicationContext(), "" + img_str, Toast.LENGTH_LONG).show();
         return img_str;
+    }
+
+    public boolean ValidarCampos() {
+        boolean retorno = true;
+        boolean verificarRFC = db.clienteDao().verificarRfc(txtRfc.getText().toString());
+        if (txtRfc.getText().toString().isEmpty() && verificarRFC == false) {
+            txtRfc.setError("Error EL RFC no ya esta registrado y/o el Campo esta vacio");
+            retorno = false;
+        }
+        if (txtNombre.getText().toString().isEmpty()) {
+            txtNombre.setError("Error Llene este campo");
+            retorno = false;
+        }
+        if (txtTelefono.getText().toString().isEmpty()) {
+            txtTelefono.setError("Error Llene este campo");
+            retorno = false;
+        }
+        if (txtCorreo.getText().toString().isEmpty()) {
+            txtCorreo.setError("Error Llene este campo");
+            retorno = false;
+        }
+        if (txtIduser.getText().toString().isEmpty()) {
+            txtIduser.setError("Error Llene este campo");
+            retorno = false;
+        }
+        if (txtDireccion.getText().toString().isEmpty()) {
+            txtDireccion.setError("Error Llene este campo");
+            retorno = false;
+        }
+        if (txtLatitud.getText().toString().isEmpty()) {
+            txtLatitud.setError("Error Llene este campo");
+            retorno = false;
+        }
+        if (txtLongitud.getText().toString().isEmpty()) {
+            txtLongitud.setError("Error Llene este campo");
+            retorno = false;
+        }
+
+        return retorno;
     }
 
     @Override
@@ -167,13 +210,9 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
             locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             /*Se asigna a la variable de tipo Location que accederá a la última posición conocida proporcionada por el proveedo*/
             loc = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            Toast.makeText(getApplicationContext(), "Latitud: " + loc.getLatitude() + " longitud: " + loc.getLongitude(), Toast.LENGTH_LONG).show();
+            //  Toast.makeText(getApplicationContext(), "Latitud: " + loc.getLatitude() + " longitud: " + loc.getLongitude(), Toast.LENGTH_LONG).show();
             cordenadas[0] = loc.getLatitude();
             cordenadas[1] = loc.getLongitude();
-           /* tvLatitud.setText(String.valueOf(loc.getLatitude()));
-            tvLongitud.setText(String.valueOf());
-            tvAltura.setText(String.valueOf(loc.getAltitude()));
-            tvPrecision.setText(String.valueOf(loc.getAccuracy()));*/
         }
         return cordenadas;
     }

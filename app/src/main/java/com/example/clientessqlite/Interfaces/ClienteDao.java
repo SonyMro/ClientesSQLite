@@ -29,7 +29,7 @@ public interface ClienteDao {
     @Query("SELECT * FROM " + Cliente.TABLE_NAME)
     List<Cliente> getAllClientes();
 
-    @Query("SELECT * FROM TblClientes WHERE rfc like ''%:rfc%''")
+    @Query("SELECT * FROM TblClientes WHERE rfc like :rfc")
     boolean verificarRfc(String rfc);
 
 }

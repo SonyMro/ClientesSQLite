@@ -53,10 +53,6 @@ public class MainActivity extends AppCompatActivity {
                         //intent= new Intent(getApplicationContext(),MostrarClientes.class);
                         //startActivity(intent);
                         break;
-                    case R.id.menu_Principal:
-                        intent= new Intent(getApplicationContext(),editarCliente.class);
-                        startActivity(intent);
-                        break;
                     case R.id.menu_salir:
                         finish();
                         break;

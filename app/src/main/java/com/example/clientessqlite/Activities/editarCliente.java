@@ -186,6 +186,46 @@ public class editarCliente extends AppCompatActivity {
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0,decodedString.length);
         return decodedByte;
     }
+
+
+    public boolean ValidarCampos() {
+        boolean retorno = true;
+        boolean verificarRFC= db.clienteDao().verificarRfc(txtRfc.getText().toString());
+        if (txtRfc.getText().toString().isEmpty()&&verificarRFC==false) {
+            txtRfc.setError("Error EL RFC no ya esta registrado y/o el Campo esta vacio");
+            retorno= false;
+        }
+        if (txtNombre.getText().toString().isEmpty()) {
+            txtNombre.setError("Error Llene este campo");
+            retorno= false;
+        }
+        if (txtTelefono.getText().toString().isEmpty()) {
+            txtTelefono.setError("Error Llene este campo");
+            retorno= false;
+        }
+        if (txtCorreo.getText().toString().isEmpty()) {
+            txtCorreo.setError("Error Llene este campo");
+            retorno= false;
+        }
+        if (txtIduser.getText().toString().isEmpty()) {
+            txtIduser.setError("Error Llene este campo");
+            retorno= false;
+        }
+        if (txtDireccion.getText().toString().isEmpty()) {
+            txtDireccion.setError("Error Llene este campo");
+            retorno= false;
+        }
+        if (txtLatitud.getText().toString().isEmpty()) {
+            txtLatitud.setError("Error Llene este campo");
+            retorno= false;
+        }
+        if (txtLongitud.getText().toString().isEmpty()) {
+            txtLongitud.setError("Error Llene este campo");
+            retorno= false;
+        }
+
+        return retorno;
+    }
     public void EliminarPersona(int IdPersona) {
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, Constantes.BD_NAME).allowMainThreadQueries().build();
 
