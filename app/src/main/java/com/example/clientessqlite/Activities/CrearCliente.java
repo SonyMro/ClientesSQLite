@@ -70,7 +70,7 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
         txtLongitud = (EditText) findViewById(R.id.txtLong);
 
 
-        btnAgregarCliente = (Button) findViewById(R.id.btnAgregarCliente);
+        btnAgregarCliente = (Button) findViewById(R.id.btnAgregar);
         btGps = (Button) findViewById(R.id.btnGps);
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, Constantes.BD_NAME).allowMainThreadQueries().build();
         btnAgregarCliente.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +132,7 @@ public class CrearCliente extends AppCompatActivity implements ActivityCompat.On
         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
         byte[] image = stream.toByteArray();
         String img_str = Base64.encodeToString(image, 0);
-        Toast.makeText(getApplicationContext(), "" + img_str, Toast.LENGTH_LONG).show();
+    //    Toast.makeText(getApplicationContext(), "" + img_str, Toast.LENGTH_LONG).show();
         return img_str;
     }
 

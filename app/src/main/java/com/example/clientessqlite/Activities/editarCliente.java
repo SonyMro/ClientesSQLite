@@ -112,7 +112,7 @@ public class editarCliente extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(editarCliente.this);
                 builder.setTitle("Alerta");
-                builder.setMessage("¿Deseas actualizar a:?" + nombre);
+                builder.setMessage("¿Deseas actualizar a:? " + nombre);
 
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
@@ -222,7 +222,6 @@ public class editarCliente extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
         byte[] image = stream.toByteArray();
         String img_str = Base64.encodeToString(image, 0);
-        Toast.makeText(getApplicationContext(), "" + img_str, Toast.LENGTH_LONG).show();
         return img_str;
     }
 
